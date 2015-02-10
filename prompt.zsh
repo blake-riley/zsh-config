@@ -1,42 +1,27 @@
-# vim:ft=zsh ts=2 sw=2 sts=2
-#
-# agnoster's Theme - https://gist.github.com/3712874
-# A Powerline-inspired theme for ZSH
-#
-# # README
-#
-# In order for this theme to render correctly, you will need a
-# [Powerline-patched font](https://github.com/Lokaltog/powerline-fonts).
-#
-# In addition, I recommend the
-# [Solarized theme](https://github.com/altercation/solarized/) and, if you're
-# using it on Mac OS X, [iTerm 2](http://www.iterm2.com/) over Terminal.app -
-# it has significantly better color fidelity.
-#
-# # Goals
-#
-# The aim of this theme is to only show you *relevant* information. Like most
-# prompts, it will only show git information when in a git working directory.
-# However, it goes a step further: everything from the current user and
-# hostname to whether the last call exited with an error to whether background
-# jobs are running in this shell will all be displayed automatically when
-# appropriate.
+#!/usr/bin/env zsh
+
+#---- prompt style ---- -----------------------#
+setopt PROMPT_SUBST               # Do prompt command processing
+
+#------ powerline ----- -----------------------#
+. $PYTHONPATH/powerline/bindings/zsh/powerline.zsh
 
 ### Segment drawing
 # A few utility functions to make it easy and re-usable to draw segmented prompts
 
 CURRENT_BG='NONE'
-SEGMENT_SEPARATOR=''
+L_SEGMENT_SEPARATOR=''
+R_SEGMENT_SEPARATOR=''
 
 # Begin a segment
 # Takes two arguments, background and foreground. Both can be omitted,
 # rendering default background/foreground.
-prompt_segment() {
+prompt_lsegment() {
   local bg fg
   [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
   [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
   if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
-    echo -n " %{$bg%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR%{$fg%} "
+    echo -n " %{$bg%F{$CURRENT_BG}%}$L_SEGMENT_SEPARATOR%{$fg%} "
   else
     echo -n "%{$bg%}%{$fg%} "
   fi
@@ -44,14 +29,36 @@ prompt_segment() {
   [[ -n $3 ]] && echo -n $3
 }
 
+prompt_rsegment() {
+  local bg fg
+  [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
+  [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
+  if [[ $CURRENT_BG == 'NONE' ]]; then
+    echo -n " %{%F{$1}%}$R_SEGMENT_SEPARATOR%{$bg$fg%} "
+  elif [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
+    echo -n " %{%K{$CURRENT_BG}%F{$1}%}$R_SEGMENT_SEPARATOR%{$bg$fg%} "
+    # echo -n " %{$bg%F{$CURRENT_BG}%}$R_SEGMENT_SEPARATOR%{$fg%} "
+  else
+    # echo -n "%{$bg%}%{$fg%} "
+    echo -n " %{$bg%}%{$fg%}"
+  fi
+  CURRENT_BG=$1
+  [[ -n $3 ]] && echo -n $3
+}
+
 # End the prompt, closing any open segments
-prompt_end() {
+prompt_lend() {
   if [[ -n $CURRENT_BG ]]; then
-    echo -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
+    echo -n " %{%k%F{$CURRENT_BG}%}$L_SEGMENT_SEPARATOR"
   else
     echo -n "%{%k%}"
   fi
   echo -n "%{%f%}"
+  CURRENT_BG=''
+}
+
+prompt_rend() {
+  echo -n " %{%k%f%}"
   CURRENT_BG=''
 }
 
@@ -61,7 +68,7 @@ prompt_end() {
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER@%m"
+    prompt_lsegment black default "%(!.%{%F{yellow}%}.)$USER@%m"
   fi
 }
 
@@ -74,9 +81,9 @@ prompt_git() {
     dirty=$(parse_git_dirty)
     ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git show-ref --head -s --abbrev |head -n1 2> /dev/null)"
     if [[ -n $dirty ]]; then
-      prompt_segment yellow black
+      prompt_rsegment yellow black
     else
-      prompt_segment green black
+      prompt_rsegment green black
     fi
 
     if [[ -e "${repo_path}/BISECT_LOG" ]]; then
@@ -108,15 +115,15 @@ prompt_hg() {
     if $(hg prompt >/dev/null 2>&1); then
       if [[ $(hg prompt "{status|unknown}") = "?" ]]; then
         # if files are not added
-        prompt_segment red white
+        prompt_rsegment red white
         st='±'
       elif [[ -n $(hg prompt "{status|modified}") ]]; then
         # if any modification
-        prompt_segment yellow black
+        prompt_rsegment yellow black
         st='±'
       else
         # if working copy is clean
-        prompt_segment green black
+        prompt_rsegment green black
       fi
       echo -n $(hg prompt "☿ {rev}@{branch}") $st
     else
@@ -124,13 +131,13 @@ prompt_hg() {
       rev=$(hg id -n 2>/dev/null | sed 's/[^-0-9]//g')
       branch=$(hg id -b 2>/dev/null)
       if `hg st | grep -q "^\?"`; then
-        prompt_segment red black
+        prompt_rsegment red black
         st='±'
       elif `hg st | grep -q "^(M|A)"`; then
-        prompt_segment yellow black
+        prompt_rsegment yellow black
         st='±'
       else
-        prompt_segment green black
+        prompt_rsegment green black
       fi
       echo -n "☿ $rev@$branch" $st
     fi
@@ -139,20 +146,20 @@ prompt_hg() {
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment blue black '%~'
+  prompt_lsegment blue black '%~'
 }
 
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-    prompt_segment blue black "(`basename $virtualenv_path`)"
+    prompt_rsegment blue black "(`basename $virtualenv_path`)"
   fi
 }
 
 # ZLE status (http://paulgoscicki.com/archives/2012/09/vi-mode-indicator-in-zsh-prompt/)
 vim_ins_mode=( green gray "[INS]" )
-vim_cmd_mode=( white yellow "[CMD]" )
+vim_cmd_mode=( white red "[CMD]" )
 vim_mode=( "${vim_ins_mode[@]}" )
 
 function zle-keymap-select {
@@ -183,7 +190,7 @@ function TRAPINT() {
 }
 
 prompt_zlestatus() {
-  prompt_segment $vim_mode[1] $vim_mode[2] $vim_mode[3]
+  prompt_lsegment $vim_mode[1] $vim_mode[2] $vim_mode[3]
 }
 
 # Status:
@@ -197,20 +204,25 @@ prompt_status() {
   [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⚡"
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}⚙"
 
-  [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
+  [[ -n "$symbols" ]] && prompt_lsegment black default "$symbols"
 }
 
 ## Main prompt
-build_prompt() {
+build_lprompt() {
   RETVAL=$?
   prompt_zlestatus
   prompt_status
-  prompt_virtualenv
   prompt_context
   prompt_dir
-  prompt_git
-  prompt_hg
-  prompt_end
+  prompt_lend
 }
 
-PROMPT='%{%f%b%k%}$(build_prompt) '
+build_rprompt() {
+  prompt_git
+  prompt_hg
+  prompt_virtualenv
+  prompt_rend
+}
+
+PROMPT='%{%f%b%k%}$(build_lprompt) '
+RPROMPT=' $(build_rprompt)'
