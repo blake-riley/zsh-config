@@ -1,12 +1,24 @@
 # Blake Riley
 # .zshrc
-# 2015-02-05
+# 2015-02-09
 
 ###############################################
 ###############################################
 #############   ZSH environment   #############
 ###############################################
 ###############################################
+
+#------ powerline ----- -----------------------#
+#pip install powerline-status
+export PYTHON_REPO=/usr/local/lib/python2.7/site-packages
+. $PYTHON_REPO/powerline/bindings/zsh/powerline.zsh
+
+#------ oh my zsh ----- -----------------------#
+export ZSH=$HOME/.oh-my-zsh
+[[ -e $ZSH/themes/blake.zsh-theme ]] || { ln -s $HOME/.zsh-blake.zsh-theme $ZSH/themes/blake.zsh-theme }
+ZSH_THEME="blake"
+plugins=(osx git itunes)
+source $ZSH/oh-my-zsh.sh
 
 #----- zsh modules ---- -----------------------#
 autoload -Uz compinit 
@@ -37,8 +49,6 @@ zstyle ':completion:*:approximate:*' max-errors 'reply=(  $((  ($#PREFIX+$#SUFFI
 
 zstyle ':completion:*:corrections' format '%B%d (errors %e)%b' # Errors format
 
-
-
 expand-or-complete-with-dots() {  # Fix for slow prompts
   echo -n "\e[31m......\e[0m"
   zle expand-or-complete
@@ -48,6 +58,7 @@ zle -N expand-or-complete-with-dots
 bindkey "^I" expand-or-complete-with-dots
 
 #------- history ------ -----------------------#
+HIST_STAMPS="yyyy-mm-dd"
 HISTSIZE=10000
 HISTFILE=~/.history
 SAVEHIST=1000000
@@ -61,6 +72,7 @@ setopt HIST_REDUCE_BLANKS         # Reduce redundant spaces
 #setopt HIST_NO_STORE              # If a line starts with a space, don't save
 setopt HIST_VERIFY                # Show history commands before executing
 
+
 #----- navigation ----- -----------------------#
 setopt AUTO_CD                    # cd implied if a directory is input
 setopt AUTO_PUSHD                 # cd=pushd
@@ -71,61 +83,61 @@ setopt PUSHD_TO_HOME              # blank pushd goes to home
 
 #---- prompt style ---- -----------------------#
 setopt PROMPT_SUBST               # Do prompt command processing
-host_color=yellow #166=orange
-history_color=magenta
-user_color=cyan
-root_color=red
-directory_color=blue
-error_color=red
-jobs_color=green
-userprompt_color=green
+# host_color=yellow #166=orange
+# history_color=magenta
+# user_color=cyan
+# root_color=red
+# directory_color=blue
+# error_color=red
+# jobs_color=green
+# userprompt_color=green
 
-user_prompt="%{$fg_bold[$user_color]%}%n@%{$reset_color%}"
-host_prompt="%{$fg_bold[$host_color]%}%m:%{$reset_color%}"
-jobs_prompt1="%{$fg_bold[$jobs_color]%}(%{$reset_color%}"
-jobs_prompt2="%{$fg[$jobs_color]%}%j%{$reset_color%}"
-jobs_prompt3="%{$fg_bold[$jobs_color]%})%{$reset_color%}"
-jobs_total="%(1j.${jobs_prompt1}${jobs_prompt2}${jobs_prompt3} .)"
-history_prompt1="%{$fg_bold[$history_color]%}[%{$reset_color%}"
-history_prompt2="%{$fg[$history_color]%}%h%{$reset_color%}"
-history_prompt3="%{$fg_bold[$history_color]%}]%{$reset_color%}"
-history_total="${history_prompt1}${history_prompt2}${history_prompt3}"
-error_prompt1="%{$fg_bold[$error_color]%}<%{$reset_color%}"
-error_prompt2="%{$fg[$error_color]%}%?%{$reset_color%}"
-error_prompt3="%{$fg_bold[$error_color]%}>%{$reset_color%}"
-error_total="%(?..${error_prompt1}${error_prompt2}${error_prompt3} )"
+# user_prompt="%{$fg_bold[$user_color]%}%n@%{$reset_color%}"
+# host_prompt="%{$fg_bold[$host_color]%}%m:%{$reset_color%}"
+# jobs_prompt1="%{$fg_bold[$jobs_color]%}(%{$reset_color%}"
+# jobs_prompt2="%{$fg[$jobs_color]%}%j%{$reset_color%}"
+# jobs_prompt3="%{$fg_bold[$jobs_color]%})%{$reset_color%}"
+# jobs_total="%(1j.${jobs_prompt1}${jobs_prompt2}${jobs_prompt3} .)"
+# history_prompt1="%{$fg_bold[$history_color]%}[%{$reset_color%}"
+# history_prompt2="%{$fg[$history_color]%}%h%{$reset_color%}"
+# history_prompt3="%{$fg_bold[$history_color]%}]%{$reset_color%}"
+# history_total="${history_prompt1}${history_prompt2}${history_prompt3}"
+# error_prompt1="%{$fg_bold[$error_color]%}<%{$reset_color%}"
+# error_prompt2="%{$fg[$error_color]%}%?%{$reset_color%}"
+# error_prompt3="%{$fg_bold[$error_color]%}>%{$reset_color%}"
+# error_total="%(?..${error_prompt1}${error_prompt2}${error_prompt3} )"
 
-function prompt_char {
-    git branch >/dev/null 2>/dev/null && echo '±' && return
-    hg root >/dev/null 2>/dev/null && echo '☿' && return
-    echo '○'
-}
+# function prompt_char {
+#     git branch >/dev/null 2>/dev/null && echo '±' && return
+#     hg root >/dev/null 2>/dev/null && echo '☿' && return
+#     echo '○'
+# }
 
-function virtualenv_info {
-    [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
-}
+# function virtualenv_info {
+#     [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
+# }
 
-case "$TERM" in
-  (screen)
-    function precmd() { print -Pn "\033]0;S $TTY:t{%100<...<%~%<<}\007" }
-  ;;
-  (xterm)
-    directory_prompt=""
-  ;;
-  (*)
-    directory_prompt="%{$fg[$directory_color]%}%~%{$reset_color%} "
-  ;;
-esac
+# case "$TERM" in
+#   (screen)
+#     function precmd() { print -Pn "\033]0;S $TTY:t{%100<...<%~%<<}\007" }
+#   ;;
+#   (xterm)
+#     directory_prompt=""
+#   ;;
+#   (*)
+#     directory_prompt="%{$fg[$directory_color]%}%~%{$reset_color%} "
+#   ;;
+# esac
 
-if [[ $USER == root ]]; then
-    post_prompt="%{$fg_bold[$root_color]%}%#%{$reset_color%}"
-else
-    post_prompt="%{$fg_bold[$userprompt_color]%}%#%{$reset_color%}"
-fi
+# if [[ $USER == root ]]; then
+#     post_prompt="%{$fg_bold[$root_color]%}%#%{$reset_color%}"
+# else
+#     post_prompt="%{$fg_bold[$userprompt_color]%}%#%{$reset_color%}"
+# fi
 
-PROMPT="
-${jobs_total}${history_total} ${user_prompt}${host_prompt}${directory_prompt}${error_total}${post_prompt}
-$(virtualenv_info)%(!.$(prompt_char).$(prompt_char)) "
+# PROMPT="
+# ${jobs_total}${history_total} ${user_prompt}${host_prompt}${directory_prompt}${error_total}${post_prompt}
+# $(virtualenv_info)%(!.$(prompt_char).$(prompt_char)) "
 
 
 #------- modules ------ -----------------------#
@@ -163,14 +175,14 @@ bindkey -M vicmd "??" history-beginning-search-forward
 bindkey '\e[2~' overwrite-mode         # insert key
 bindkey '\e[3~' delete-char            # delete key
 
-function zle-line-init zle-keymap-select {
-    VIM_PROMPT="%{$fg_bold[yellow]%} [% COMMAND]%  %{$reset_color%}"
-    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
-    zle reset-prompt
-}
+# function zle-line-init zle-keymap-select {
+#     VIM_PROMPT="%{$fg_bold[yellow]%} [% COMMAND]%  %{$reset_color%}"
+#     RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+#     zle reset-prompt
+# }
 
-zle -N zle-line-init
-zle -N zle-keymap-select
+# zle -N zle-line-init
+# zle -N zle-keymap-select
 export KEYTIMEOUT=1
 
 #---------------------- -----------------------#
@@ -232,6 +244,9 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 export VMDDIR="/Applications/VMD-1.9.2.app/Contents/vmd"
 alias vmd='/Applications/VMD-1.9.2.app/Contents/vmd/vmd_MACOSXX86'
 alias vmdtext='/Applications/VMD-1.9.2.app/Contents/vmd/vmd_MACOSXX86 -dispdev text'
+#-- virtualenvwrapper - -----------------------#
+source virtualenvwrapper.sh
+
 
 #- personal commands -- -----------------------#
 #--- timing 
@@ -254,9 +269,6 @@ function timing() {
 }
 
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
-
-
-
 
 #--- final commands --- -----------------------#
 archey --orange
