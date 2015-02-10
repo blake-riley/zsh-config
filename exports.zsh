@@ -11,7 +11,7 @@ export AMBERHOME=/usr/local/amberbin/amber12
 export VMDDIR="/Applications/VMD-1.9.2.app/Contents/vmd"
 
 #--- Powerline
-export PYTHONPATH=/usr/local/lib/python2.7/site-packages
+export PY_PKGS=/usr/local/lib/python2.7/site-packages
 
 #-------- PATH -------- -----------------------#
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/local:$PATH

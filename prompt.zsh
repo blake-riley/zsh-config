@@ -4,7 +4,7 @@
 setopt PROMPT_SUBST               # Do prompt command processing
 
 #------ powerline ----- -----------------------#
-. $PYTHONPATH/powerline/bindings/zsh/powerline.zsh
+. $PY_PKGS/powerline/bindings/zsh/powerline.zsh
 
 ### Segment drawing
 # A few utility functions to make it easy and re-usable to draw segmented prompts
