@@ -20,3 +20,7 @@ alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 #--- VMD
 alias vmd='/Applications/VMD-1.9.2.app/Contents/vmd/vmd_MACOSXX86'
 alias vmdtext='/Applications/VMD-1.9.2.app/Contents/vmd/vmd_MACOSXX86 -dispdev text'
+alias catdcd='/Applications/VMD-1.9.2.app/Contents/vmd/plugins/MACOSXX86/bin/catdcd5.1/catdcd'
+#--- coot
+alias coot='/Applications/ccp4-6.5/coot.app/Contents/MacOS/coot'
+alias pymol='pymol -M'

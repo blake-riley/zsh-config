@@ -63,13 +63,13 @@ function ss {
   fi
 }
 
-function sc {
-  if [ -e script/console ]; then
-    script/console $@
-  else
-    script/rails console $@
-  fi
-}
+# function sc {
+#   if [ -e script/console ]; then
+#     script/console $@
+#   else
+#     script/rails console $@
+#   fi
+# }
 
 function fix_airplay {
   sudo kill `ps -ax | grep 'coreaudiod' | grep 'sbin' |awk '{print $1}'`
