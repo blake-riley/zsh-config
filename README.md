@@ -2,6 +2,7 @@
 
 ## Instructions:
 - Clone repo into `$HOME`
+  - `git clone https://github.com/blake-riley/zsh-config ~/.zsh`
 - Copy `.zshrc` into your `$HOME`
 - Change shell (permanently) with `sudo chsh -s /usr/local/bin/zsh`
 - Compile .zsh scripts with `zsh-recompile`
