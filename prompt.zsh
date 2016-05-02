@@ -177,17 +177,36 @@ function zle-keymap-select {
   zle reset-prompt
 }
 
-function zle-line-finish {
-  vim_mode=( "${vim_ins_mode[@]}" )
-}
+# function zle-line-finish {
+#   vim_mode=( "${vim_ins_mode[@]}" )
+# }
 
 zle -N zle-keymap-select
-zle -N zle-line-finish
+# zle -N zle-line-finish
 
-function TRAPINT() {
-  vim_mode=( "${vim_ins_mode[@]}" )
-  return $(( 128 + $1 ))
+# function TRAPINT() {
+#   vim_mode=( "${vim_ins_mode[@]}" )
+#   return $(( 128 + $1 ))
+# }
+
+function _recover_line_or_else() {
+  if [[ -z $BUFFER && $CONTEXT = start && $zsh_eval_context = shfunc
+        && -n $ZLE_LINE_ABORTED
+        && $ZLE_LINE_ABORTED != $history[$((HISTCMD-1))] ]]; then
+    LBUFFER+=$ZLE_LINE_ABORTED
+    unset ZLE_LINE_ABORTED
+  else
+    zle .$WIDGET
+  fi
 }
+zle -N up-line-or-history _recover_line_or_else
+
+function _zle_line_finish() {
+  vim_mode=( "${vim_ins_mode[@]}" )
+  # ZLE_LINE_ABORTED=$BUFFER
+}
+zle -N zle-line-finish _zle_line_finish
+
 
 prompt_zlestatus() {
   prompt_lsegment $vim_mode[1] $vim_mode[2] $vim_mode[3]
