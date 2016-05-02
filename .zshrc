@@ -16,6 +16,7 @@ autoload -U compinit && compinit
 autoload -U zsh-mime-setup && zsh-mime-setup
 autoload -U zcalc
 
+source $HOME/.zsh/iterm_zsh_integration.zsh
 source $HOME/.zsh/colors.zsh
 source $HOME/.zsh/setopt.zsh
 source $HOME/.zsh/exports.zsh
