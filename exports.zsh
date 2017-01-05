@@ -12,7 +12,7 @@ export PATH=$AMBERHOME/bin:$PATH
 export VMDDIR="/Applications/VMD-1.9.2.app/Contents/vmd"
 
 #--- Powerline
-export PY_PKGS=/usr/local/lib/python2.7/site-packages
+export PY_PKGS=/usr/local/lib/python3.6/site-packages
 
 #--- Homebrew/Cask
 export HOMEBREW_CASK_OPTS='--appdir=/Applications'
