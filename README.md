@@ -10,11 +10,14 @@
 _NB: I have hidden servers.zsh, as it can contain sensitive information._  
 _You may need to `touch servers.zsh`._
 
+_NB: If you get errors about insecure files, investigate compaudit._
+_If you are powerless to secure these files, then add '-u' to compinit calls in .zshrc and completions.zsh._
+
 ## Dependencies:
 - Homebrew
 - zsh (`brew install zsh`)
-- powerline-status (`pip install powerline-status`)
-- virtualenv (`pip install virtualenv`)
+- powerline-status (`pip install --user powerline-status`)
+- virtualenv (`pip install --user virtualenv virtualenvwrapper`)
 
 ## TODO:
 - Fix Ctrl+C error
