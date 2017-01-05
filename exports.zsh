@@ -2,6 +2,9 @@
 
 #--- zsh
 export ZSH=$HOME/.oh-my-zsh
+#--- brew
+export HOMEBREW_BUILD_FROM_SOURCE=1
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 #--- Android
 export ANDROID_HOME=/usr/local/opt/android-sdk
 #--- Amber
