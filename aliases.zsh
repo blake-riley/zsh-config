@@ -13,6 +13,9 @@ alias lm='ls -al |more' # pipe through 'more'
 alias lr='ls -lR'       # recursive ls
 alias tree='tree -Csu'  # nice alternative to 'recursive ls'
 
+#---- pip upgrade ----- -----------------------#
+alias pipup="pip freeze --local | grep -v '^\-e' | cut -d = -f 1 | xargs pip install -U"
+
 #------- copying ------ -----------------------#
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 
