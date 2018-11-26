@@ -11,7 +11,7 @@ export ANDROID_HOME="/usr/local/opt/android-sdk"
 export AMBERHOME="/sw/amber14"
 
 #--- VMD
-export VMDDIR="/Applications/VMD-1.9.2.app/Contents/vmd"
+export VMDDIR="/Applications/VMD-1.9.4.app/Contents/vmd"
 
 #--- Perl
 export PERL5LIB="${HOME}/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"
