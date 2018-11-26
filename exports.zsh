@@ -22,9 +22,6 @@ export VMDDIR="/Applications/VMD-1.9.4.app/Contents/vmd"
 #--- Powerline
 export PY_PKGS="/usr/local/lib/python3.6/site-packages"
 
-#--- Homebrew/Cask
-export HOMEBREW_CASK_OPTS='--appdir=/Applications'
-
 #-------- PATH -------- -----------------------#
 export PATH="${AMBERHOME}/bin:${PATH}"  # Amber
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/local:${PATH}"
