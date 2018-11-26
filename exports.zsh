@@ -19,9 +19,6 @@ export VMDDIR="/Applications/VMD-1.9.4.app/Contents/vmd"
 #export PERL_MB_OPT="--install_base \"${HOME}/perl5\""
 #export PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"
 
-#--- Powerline
-export PY_PKGS="/usr/local/lib/python3.6/site-packages"
-
 #-------- PATH -------- -----------------------#
 export PATH="${AMBERHOME}/bin:${PATH}"  # Amber
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/local:${PATH}"

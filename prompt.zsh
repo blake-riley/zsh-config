@@ -4,7 +4,7 @@
 setopt PROMPT_SUBST               # Do prompt command processing
 
 #------ powerline ----- -----------------------#
-. $PY_PKGS/powerline/bindings/zsh/powerline.zsh
+. ${HOME}/.pyenv/versions/tools-3/lib/python3.?/site-packages/powerline/bindings/zsh/powerline.zsh
 
 ### Segment drawing
 # A few utility functions to make it easy and re-usable to draw segmented prompts
@@ -157,6 +157,29 @@ prompt_virtualenv() {
   fi
 }
 
+# pyenv: current working pyenv locals
+prompt_pyenv() {
+  # First, abort if virtualenv is working...
+  local virtualenv_path="$VIRTUAL_ENV"
+  if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
+    return
+  fi
+
+  # Next, determine the local pyenvs
+  if $(pyenv -v >/dev/null 2>&1); then
+    local locals=($(pyenv local 2>/dev/null))
+    if [[ -n $locals ]]; then
+      prompt_rsegment blue black
+      echo -n "\xF0\x9F\x90\x8D  "
+      if [[ ${#locals} -gt 1 ]]; then
+        echo -n "${locals[1]} (${(l:${#locals}-1::+:)})"
+      else
+        echo -n "${locals}"
+      fi
+    fi
+  fi
+}
+
 # ZLE status (http://paulgoscicki.com/archives/2012/09/vi-mode-indicator-in-zsh-prompt/)
 vim_ins_mode=( green gray "[INS]" )
 vim_cmd_mode=( white red "[CMD]" )
@@ -240,6 +263,7 @@ build_rprompt() {
   prompt_git
   prompt_hg
   prompt_virtualenv
+  prompt_pyenv
   prompt_rend
 }
 
