@@ -3,7 +3,7 @@
 #- scripts to source -- -----------------------#
 
 #--- Gromacs
-source /usr/local/share/gromacs/GMXRC.bash
+# source /usr/local/share/gromacs/GMXRC.bash
 #--- CCP4
 # source /Applications/ccp4-7.0/bin/ccp4.setup-sh
 #--- Phenix
