@@ -15,5 +15,3 @@ source virtualenvwrapper.sh
 #--- TeX fix --- ------ -----------------------#
 #eval `/usr/libexec/path_helper -s`
 
-#--- final commands --- -----------------------#
-. $HOME/.zsh/archey.zsh --orange
