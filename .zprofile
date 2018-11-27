@@ -33,4 +33,4 @@ source $HOME/.zsh/source_apps.zsh
 source $HOME/.zsh/prompt.zsh
 
 #--- final commands --- ----------------#
-. $HOME/.zsh/archey.zsh --orange
+$HOME/.zsh/archey-osx/archey.sh --orange --packager --localip
