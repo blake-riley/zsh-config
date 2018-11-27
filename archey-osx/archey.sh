@@ -139,29 +139,29 @@ case "${packager}" in
     ;;
 esac
 
-fieldlist[${#fieldlist[@]}]="${textColor}User:${normal} ${user}${normal}"
+fieldlist[${#fieldlist[@]}]="${textColor}User:    ${normal} ${user}${normal}"
 fieldlist[${#fieldlist[@]}]="${textColor}Hostname:${normal} ${hostname}${normal}"
-fieldlist[${#fieldlist[@]}]="${textColor}Distro:${normal} ${distro}${normal}"
-fieldlist[${#fieldlist[@]}]="${textColor}Kernel:${normal} ${kernel}${normal}"
-fieldlist[${#fieldlist[@]}]="${textColor}Uptime:${normal} ${uptime}${normal}"
-fieldlist[${#fieldlist[@]}]="${textColor}Shell:${normal} ${shell}${normal}"
+fieldlist[${#fieldlist[@]}]="${textColor}Distro:  ${normal} ${distro}${normal}"
+fieldlist[${#fieldlist[@]}]="${textColor}Kernel:  ${normal} ${kernel}${normal}"
+fieldlist[${#fieldlist[@]}]="${textColor}Uptime:  ${normal} ${uptime}${normal}"
+fieldlist[${#fieldlist[@]}]="${textColor}Shell:   ${normal} ${shell}${normal}"
 fieldlist[${#fieldlist[@]}]="${textColor}Terminal:${normal} ${terminal}${normal}"
 if [ ${packagehandler} -ne 0 ]; then
     fieldlist[${#fieldlist[@]}]="${textColor}Packages:${normal} ${packagehandler}${normal}"
 fi
-fieldlist[${#fieldlist[@]}]="${textColor}CPU:${normal} ${cpu}${normal}"
-fieldlist[${#fieldlist[@]}]="${textColor}Memory:${normal} ${ram}${normal}"
-fieldlist[${#fieldlist[@]}]="${textColor}Disk:${normal} ${disk}${normal}"
+fieldlist[${#fieldlist[@]}]="${textColor}CPU:     ${normal} ${cpu}${normal}"
+fieldlist[${#fieldlist[@]}]="${textColor}Memory:  ${normal} ${ram}${normal}"
+fieldlist[${#fieldlist[@]}]="${textColor}Disk:    ${normal} ${disk}${normal}"
 if [[ ! -z $battery ]]; then
-    fieldlist[${#fieldlist[@]}]="${textColor}Battery:${normal} ${battery}%${normal}"
+    fieldlist[${#fieldlist[@]}]="${textColor}Battery: ${normal} ${battery}%${normal}"
 fi
 # Texts had to be shortend to fit in 80 window
 if [ "${opt_offline}" = f ]; then
     if [ ! -z "$V4" ]; then
-      fieldlist[${#fieldlist[@]}]="${textColor}IPv4:${normal} ${V4}${normal}"
+      fieldlist[${#fieldlist[@]}]="${textColor}IPv4:    ${normal} ${V4}${normal}"
     fi
     if [ ! -z "$V6" ]; then
-      fieldlist[${#fieldlist[@]}]="${textColor}IPv6:${normal} ${V6}${normal}"
+      fieldlist[${#fieldlist[@]}]="${textColor}IPv6:    ${normal} ${V6}${normal}"
     fi
 fi
 if [ "${opt_localip}" = t ]; then
