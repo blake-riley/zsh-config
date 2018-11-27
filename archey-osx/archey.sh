@@ -36,10 +36,10 @@ do
       opt_force_color=t
       ;;
     -o|--offline)
-        opt_offline=t
-        ;;
+      opt_offline=t
+      ;;
     -l|--localip)
-		opt_localip=t
+		  opt_localip=t
       ;;
     -h|--help)
       echo "Archey OS X 1.6.1"
