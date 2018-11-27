@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# archey-osx 1.6.1 (https://github.com/obihann/archey-osx/)
+# archey-osx 1.6.1-orange (https://github.com/obihann/archey-osx/)
 
 # test to see if bash supports arrays
 arraytest[0]='test' || (echo 'Error: Arrays are not supported in this version of
@@ -18,6 +18,7 @@ fi
 # Get the command line options
 opt_nocolor=f
 opt_force_color=f
+opt_orange_color=f
 opt_offline=f
 for arg in "$@"
 do
@@ -35,6 +36,11 @@ do
       opt_nocolor=f
       opt_force_color=t
       ;;
+    --orange)
+      opt_nocolor=f
+      opt_force_color=t
+      opt_orange_color=t
+      ;;
     -o|--offline)
       opt_offline=t
       ;;
@@ -50,6 +56,7 @@ do
       echo "  -m --macports  Force use MacPorts as package system."
       echo "  -b --nocolor   Turn color off."
       echo "  -c --color     Force the color on (overrides --nocolor)."
+      echo "     --orange   Make the apple logo appear orange (overrides --nocolor)."
       echo "  -o --offline   Disable the IP address check."
       echo "  -l --localip   Show local IP adddress"
       exit 0
@@ -118,11 +125,20 @@ disk=$(df | head -2 | tail -1 | awk '{print $5}')
 # * or if we're forcing color
 if [[ ( -t 1  && "${opt_nocolor}" = f) || "${opt_force_color}" = t ]]
 then
-  RED=$(tput       setaf 1 2>/dev/null)
-  GREEN=$(tput     setaf 2 2>/dev/null)
-  YELLOW=$(tput    setaf 3 2>/dev/null)
-  BLUE=$(tput      setaf 4 2>/dev/null)
-  PURPLE=$(tput    setaf 5 2>/dev/null)
+  if [[ "${opt_orange_color}" = t ]]
+  then
+    RED=$(tput       setaf 166 2>/dev/null)
+    GREEN=$(tput     setaf 166 2>/dev/null)
+    YELLOW=$(tput    setaf 166 2>/dev/null)
+    BLUE=$(tput      setaf 166 2>/dev/null)
+    PURPLE=$(tput    setaf 166 2>/dev/null)
+  else
+    RED=$(tput       setaf 1 2>/dev/null)
+    GREEN=$(tput     setaf 2 2>/dev/null)
+    YELLOW=$(tput    setaf 3 2>/dev/null)
+    BLUE=$(tput      setaf 4 2>/dev/null)
+    PURPLE=$(tput    setaf 5 2>/dev/null)
+  fi
   textColor=$(tput setaf 6 2>/dev/null)
   normal=$(tput    sgr0 2>/dev/null)
 fi
