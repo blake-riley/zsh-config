@@ -8,8 +8,8 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 #--- Android
 export ANDROID_HOME="/usr/local/opt/android-sdk"
 #--- Amber
-export AMBERHOME="/sw/amber14"
-
+export AMBERHOME="/sw/amber18"
+export AMBER_PREFIX="/sw/amber18"
 #--- VMD
 export VMDDIR="/Applications/VMD-1.9.4.app/Contents/vmd"
 
@@ -28,7 +28,6 @@ export PATH="${HOME}/.local/bin:${PATH}"
 export PATH="${HOME}/.cargo/bin:${PATH}"  # rustup
 export PATH="${HOME}/perl5/bin${PATH+:}${PATH}"  # Perl
 export PATH="${PATH}:$(dirname '/Applications/APBS.app/Contents/MacOS/apbs_term')"
-
 
 #------ COMPILING ----- -----------------------#
 export ARCHFLAGS='-arch x86_64'

@@ -7,8 +7,7 @@
 #--- CCP4
 # source /Applications/ccp4-7.0/bin/ccp4.setup-sh
 #--- Phenix
-# source /usr/local/phenix-1.9-1692/phenix_env.sh
-
+# source /Applications/phenix-1.14-3260/phenix_env.sh
 #-- pyenv-virtualenv --------------------------#
 # source virtualenvwrapper.sh
 eval "$(pyenv init -)"
