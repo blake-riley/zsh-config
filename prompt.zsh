@@ -59,5 +59,7 @@ prompt_pyenv() {
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
 # #### ####### ####
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vi_mode status background_jobs context dir root_indicator)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs pyenv time)
+POWERLEVEL9K_CONTEXT_TEMPLATE="%n@%m" # Default is user@host "%n@%m", we may want to override if we're also using a user segment
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vi_mode background_jobs os_icon context_joined ssh dir dir_writable vcs newline status root_indicator)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(pyenv time)
