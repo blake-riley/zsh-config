@@ -17,7 +17,6 @@ _If you are powerless to secure these files, then add '-u' to compinit calls in 
 - Homebrew
 - zsh (`brew install zsh`)
 - powerline-status (`pip3 install --user powerline-status`)
-- virtualenv (`pip3 install --user virtualenv virtualenvwrapper`)
 
 ## TODO:
 - Fix Ctrl+C error
