@@ -16,7 +16,6 @@ _If you are powerless to secure these files, then add '-u' to compinit calls in 
 ## Dependencies:
 - Homebrew
 - zsh (`brew install zsh`)
-- powerline-status (`pip3 install --user powerline-status`)
 
 ## TODO:
 - Fix Ctrl+C error

@@ -3,8 +3,7 @@
 #---- prompt style ---- -----------------------#
 setopt PROMPT_SUBST               # Do prompt command processing
 
-#------ powerline ----- -----------------------#
-. ${HOME}/.pyenv/versions/tools-3/lib/python3.?/site-packages/powerline/bindings/zsh/powerline.zsh
+#---- prompt style - powerlevel9k/oh-my-zsh ---#
 
 ### Segment drawing
 # A few utility functions to make it easy and re-usable to draw segmented prompts
