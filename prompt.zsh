@@ -4,10 +4,10 @@
 setopt PROMPT_SUBST               # Do prompt command processing
 
 #---- prompt style - powerlevel9k ---#
+POWERLEVEL9K_MODE="nerdfont-complete"
 source $HOME/.zsh/powerlevel9k/powerlevel9k.zsh-theme
 
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-POWERLEVEL9K_MODE="nerdfont_complete"
 
 POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='red'
 POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='white'
