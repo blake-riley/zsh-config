@@ -59,5 +59,5 @@ prompt_pyenv() {
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
 # #### ####### ####
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vi_mode status root_indicator background_jobs context dir)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs pyenv)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vi_mode status background_jobs context dir root_indicator)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs pyenv time)
