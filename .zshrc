@@ -28,7 +28,6 @@ source $HOME/.zsh/servers.zsh
 source $HOME/.zsh/functions.zsh
 source $HOME/.zsh/history.zsh
 source $HOME/.zsh/zsh_hooks.zsh
-source $HOME/.zsh/omzlib/git.zsh  # From oh-my-zsh 2014-12-15 (https://github.com/robbyrussell/oh-my-zsh/blob/master/lib/git.zsh)
 source $HOME/.zsh/source_apps.zsh
 source $HOME/.zsh/prompt.zsh
 
