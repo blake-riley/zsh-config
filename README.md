@@ -2,11 +2,11 @@
 
 ## Instructions:
 
-- Clone repo into `$HOME`
+- Clone repo into `$HOME` & update subrepos
   - `git clone https://github.com/blake-riley/zsh-config ~/.zsh`
-- Copy `.zshrc` into your `$HOME`
-- Change shell (permanently) with `sudo chsh -s /usr/local/bin/zsh`
-- Compile .zsh scripts with `zsh-recompile`
+  - `cd ~/.zsh && git submodule init && git submodule update`
+- Link `.zshrc` into your `$HOME`, with `ln -s ~/.zsh/.zshrc ~/.zshrc`
+- Change shell (permanently), with `sudo chsh -s /usr/local/bin/zsh`
 - Install NerdFonts for terminal (`brew tap caskroom/fonts; brew cask install font-hack-nerd-font`), and configure your Terminal emulator to use these fonts
 
 _NB: I have hidden servers.zsh, as it can contain sensitive information._  
@@ -19,8 +19,8 @@ _If you are powerless to secure these files, then add '-u' to compinit calls in 
 
 - Homebrew
 - zsh (`brew install zsh`)
+- A nice terminal emulator
 
 ## TODO:
 
-- Fix Ctrl+C error
-- Add errorcodes to RPROMPT
+- Fix <Tab> autocomplete eating lines above
