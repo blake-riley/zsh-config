@@ -28,6 +28,7 @@ source $HOME/.zsh/bindkeys.zsh
 source $HOME/.zsh/functions.zsh
 source $HOME/.zsh/history.zsh
 source $HOME/.zsh/zsh_hooks.zsh
+[[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/.zsh/source_apps.zsh
 source $HOME/.zsh/prompt.zsh
 
