@@ -23,8 +23,8 @@ source $HOME/.zsh/exports.zsh
 source $HOME/.zsh/editing.zsh
 source $HOME/.zsh/completion.zsh
 source $HOME/.zsh/aliases.zsh
-source $HOME/.zsh/servers.zsh
-#source $HOME/.zsh/bindkeys.zsh
+[[ -f $HOME/.zsh/servers.zsh ]] && source $HOME/.zsh/servers.zsh
+source $HOME/.zsh/bindkeys.zsh
 source $HOME/.zsh/functions.zsh
 source $HOME/.zsh/history.zsh
 source $HOME/.zsh/zsh_hooks.zsh
