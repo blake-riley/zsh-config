@@ -16,6 +16,9 @@ alias tree='tree -Csu'  # nice alternative to 'recursive ls'
 #---- pip upgrade ----- -----------------------#
 alias pipup="pip freeze --local | grep -v '^\-e' | cut -d = -f 1 | xargs pip install -U"
 
+#---- brew fetch outdated ---------------------#
+alias brewfetch="brew outdated | cut -d ' ' -f 1 | xargs brew fetch"
+
 #------- copying ------ -----------------------#
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 
