@@ -13,6 +13,9 @@ export AMBER_PREFIX="/sw/amber18"
 #--- VMD
 export VMDDIR="/Applications/VMD-1.9.4.app/Contents/vmd"
 
+#--- Ruby
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
 #--- Perl
 #export PERL5LIB="${HOME}/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"
 #export PERL_LOCAL_LIB_ROOT="${HOME}/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"

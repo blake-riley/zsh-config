@@ -12,6 +12,8 @@
 # source virtualenvwrapper.sh
 eval "$(pyenv init -)"
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+#-- rbenv -------------------------------------#
+eval "$(rbenv init -)"
 
 #--- TeX fix --- ------ -----------------------#
 #eval `/usr/libexec/path_helper -s`
