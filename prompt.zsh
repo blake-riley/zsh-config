@@ -3,9 +3,9 @@
 #---- prompt style ---- -----------------------#
 setopt PROMPT_SUBST               # Do prompt command processing
 
-#---- prompt style - powerlevel9k ---#
+#---- prompt style - powerlevel10k ---#
 POWERLEVEL9K_MODE="nerdfont-complete"
-source $HOME/.zsh/powerlevel9k/powerlevel9k.zsh-theme
+source $HOME/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
@@ -23,11 +23,11 @@ PYTHON_ICON=$'\UF81F' # $'\U1F40D' # $'\xF0\x9F\x90\x8D'
 GLOBAL_ICON=$'\UF0AC'
 LOCAL_ICON=$'\UE5FC'
 SHELL_ICON=$'\UF489'
-set_default POWERLEVEL9K_PYENV_PROMPT_ALWAYS_SHOW false
+# set_default POWERLEVEL9K_PYENV_PROMPT_ALWAYS_SHOW false
 prompt_pyenv() {
   # First, check if local pyenv is set.
   if [[ -n "$PYENV_VERSION" ]]; then
-    "$1_prompt_segment" "$0" "$2" "green" "$DEFAULT_COLOR" "$PYENV_VERSION $SHELL_ICON $PYTHON_ICON"
+    p10k segment -b "green" -t "$PYENV_VERSION $SHELL_ICON $PYTHON_ICON"
   elif [ $commands[pyenv] ]; then
     # We're either local or global.
     # Get info about the global stack.
@@ -45,11 +45,11 @@ prompt_pyenv() {
 
     # Are we in a pyenv local stack?
     if [[ "${pyenv_version_name}" != "${pyenv_global}" ]]; then
-      "$1_prompt_segment" "$0" "$2" "green" "$DEFAULT_COLOR" "$pyenv_version_repr $LOCAL_ICON $PYTHON_ICON"
+      p10k segment -b "green" -t "$pyenv_version_repr $LOCAL_ICON $PYTHON_ICON"
     elif [[ "${POWERLEVEL9K_PYENV_PROMPT_ALWAYS_SHOW}" == "true" ]]; then
-      "$1_prompt_segment" "$0" "$2" "green" "$DEFAULT_COLOR" "$pyenv_version_repr $GLOBAL_ICON $PYTHON_ICON"
+      p10k segment -b "green" -t "$pyenv_version_repr $GLOBAL_ICON $PYTHON_ICON"
     else
-      "$1_prompt_segment" "$0" "$2" "green" "$DEFAULT_COLOR" "$GLOBAL_ICON $PYTHON_ICON"
+      p10k segment -b "green" -t "$GLOBAL_ICON $PYTHON_ICON"
     fi
   fi
 }
