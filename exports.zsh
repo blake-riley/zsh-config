@@ -23,6 +23,7 @@ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 #export PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"
 
 #-------- PATH -------- -----------------------#
+export PATH="${HOME}/.iterm2/bin:${PATH}"  # iterm2_shell_integrations
 export PATH="${AMBERHOME}/bin:${PATH}"  # Amber
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/local:${PATH}"
 export PATH="${HOME}/bin:${PATH}"
