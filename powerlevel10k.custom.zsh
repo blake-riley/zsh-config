@@ -59,7 +59,7 @@
     command_execution_time  # duration of the last command
     direnv                  # direnv status (https://direnv.net/)
     asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
-    virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
+    # virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     anaconda                # conda environment (https://conda.io/)
     my_pyenv
     # pyenv                   # python environment (https://github.com/pyenv/pyenv)
