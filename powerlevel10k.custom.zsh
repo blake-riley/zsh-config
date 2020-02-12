@@ -1399,7 +1399,19 @@
   #   - always:   Trim down prompt when accepting a command line.
   #   - same-dir: Trim down prompt when accepting a command line unless this is the first command
   #               typed after changing current working directory.
-  typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=same-dir
+  typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=off
+
+  # We can customise the prompts after the command-line has been printed.
+  # See https://github.com/romkatv/powerlevel10k/issues/316 for more detail
+  function p10k-on-post-prompt() {
+    # Hide the second-line prompt segments.
+    p10k display '2/left/*'=hide
+  }
+
+  function p10k-on-pre-prompt() {
+    # Show all segments again.
+    p10k display '(1|2)/*'=show
+  }
 
   # Instant prompt mode.
   #
