@@ -19,7 +19,9 @@ fi
 export PYENV_ROOT="${HOME}/.pyenv"
 
 #--- Ruby
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+if [[ $(uname -s) == Darwin ]] && $(command -v brew 1>/dev/null 2>&1); then
+	export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+fi
 
 #--- Perl
 #export PERL5LIB="${HOME}/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"
