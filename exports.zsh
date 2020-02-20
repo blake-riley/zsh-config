@@ -15,6 +15,9 @@ if [[ $(uname -s) == Darwin ]]; then
 	export VMDDIR="/Applications/VMD-1.9.4.app/Contents/vmd"
 fi
 
+#--- Python
+export PYENV_ROOT="${HOME}/.pyenv"
+
 #--- Ruby
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
@@ -30,6 +33,7 @@ export PATH="${AMBERHOME}/bin:${PATH}"  # Amber
 export PATH="/usr/local/bin:/usr/local/sbin:/usr/local:${PATH}"
 export PATH="${HOME}/bin:${PATH}"
 export PATH="${HOME}/.local/bin:${PATH}"
+export PATH="${PYENV_ROOT}/bin:${PATH}"  # pyenv
 #export PATH="${HOME}/.cabal/bin:${PATH}"  # Haskell
 export PATH="${HOME}/.cargo/bin:${PATH}"  # rustup
 export PATH="${HOME}/perl5/bin${PATH+:}${PATH}"  # Perl
