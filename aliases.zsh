@@ -30,10 +30,15 @@ alias brewfetch="brew outdated | cut -d ' ' -f 1 | xargs brew fetch"
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 
 #---- applications ---- -----------------------#
-#--- VMD
-alias vmd='/Applications/VMD-1.9.4.app/Contents/vmd/vmd_MACOSXX86'
-alias vmdtext='/Applications/VMD-1.9.4.app/Contents/vmd/vmd_MACOSXX86 -dispdev text'
-alias catdcd='/Applications/VMD-1.9.4.app/Contents/vmd/plugins/MACOSXX86/bin/catdcd5.2/catdcd'
-#--- coot
-alias coot='/Applications/ccp4-7.0/coot.app/Contents/MacOS/coot'
-alias pymol='/Applications/PyMOL.app/Contents/MacOS/PyMOL'
+case `uname` in
+	Darwin)
+		#--- VMD
+		alias vmd='/Applications/VMD-1.9.4.app/Contents/vmd/vmd_MACOSXX86'
+		alias vmdtext='/Applications/VMD-1.9.4.app/Contents/vmd/vmd_MACOSXX86 -dispdev text'
+		alias catdcd='/Applications/VMD-1.9.4.app/Contents/vmd/plugins/MACOSXX86/bin/catdcd5.2/catdcd'
+		#--- coot
+		alias coot='/Applications/ccp4-7.0/coot.app/Contents/MacOS/coot'
+		#--- PyMOL
+		alias pymol='/Applications/PyMOL.app/Contents/MacOS/PyMOL'
+	;;
+esac
