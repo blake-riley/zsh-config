@@ -11,7 +11,9 @@ export ANDROID_HOME="/usr/local/opt/android-sdk"
 export AMBERHOME="/sw/amber18"
 export AMBER_PREFIX="/sw/amber18"
 #--- VMD
-export VMDDIR="/Applications/VMD-1.9.4.app/Contents/vmd"
+if [[ $(uname -s) == Darwin ]]; then
+	export VMDDIR="/Applications/VMD-1.9.4.app/Contents/vmd"
+fi
 
 #--- Ruby
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
