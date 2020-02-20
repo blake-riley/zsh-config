@@ -24,21 +24,21 @@ autoload -U compinit && compinit
 autoload -U zsh-mime-setup && zsh-mime-setup
 autoload -U zcalc
 
-source $HOME/.zsh/iterm2_shell_integration.zsh
-source $HOME/.zsh/colors.zsh
-source $HOME/.zsh/setopt.zsh
-source $HOME/.zsh/exports.zsh
-source $HOME/.zsh/editing.zsh
-source $HOME/.zsh/completion.zsh
-source $HOME/.zsh/aliases.zsh
-[[ -f $HOME/.zsh/servers.zsh ]] && source $HOME/.zsh/servers.zsh
-source $HOME/.zsh/bindkeys.zsh
-source $HOME/.zsh/functions.zsh
-source $HOME/.zsh/history.zsh
-source $HOME/.zsh/zsh_hooks.zsh
+source ${HOME}/.zsh/iterm2_shell_integration.zsh
+source ${HOME}/.zsh/colors.zsh
+source ${HOME}/.zsh/setopt.zsh
+source ${HOME}/.zsh/exports.zsh
+source ${HOME}/.zsh/editing.zsh
+source ${HOME}/.zsh/completion.zsh
+source ${HOME}/.zsh/aliases.zsh
+[[ -f ${HOME}/.zsh/servers.zsh ]] && source ${HOME}/.zsh/servers.zsh
+source ${HOME}/.zsh/bindkeys.zsh
+source ${HOME}/.zsh/functions.zsh
+source ${HOME}/.zsh/history.zsh
+source ${HOME}/.zsh/zsh_hooks.zsh
 [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOME/.zsh/source_apps.zsh
-source $HOME/.zsh/prompt.zsh
+source ${HOME}/.zsh/source_apps.zsh
+source ${HOME}/.zsh/prompt.zsh
 
 #--- final commands --- ----------------#
 case `uname` in
