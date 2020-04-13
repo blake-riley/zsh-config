@@ -76,13 +76,15 @@ function fix_airplay {
 }
 
 # Detect empty enter, execute git status if in git dir
+# code from: https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/magic-enter/magic-enter.plugin.zsh
 magic-enter () {
         if [[ -z $BUFFER ]]; then
           if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
             echo -ne '\n'
             git status 
+            echo -ne '\n\n'
           fi
-          zle accept-line
+          zle redisplay
         else
           zle accept-line
         fi
