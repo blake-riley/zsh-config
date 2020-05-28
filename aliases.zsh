@@ -37,7 +37,7 @@ case `uname` in
 		alias vmdtext='/Applications/VMD-1.9.4.app/Contents/vmd/vmd_MACOSXX86 -dispdev text'
 		alias catdcd='/Applications/VMD-1.9.4.app/Contents/vmd/plugins/MACOSXX86/bin/catdcd5.2/catdcd'
 		#--- coot
-		alias coot='/Applications/ccp4-7.0/coot.app/Contents/MacOS/coot'
+		alias coot='/Applications/ccp4-7.1/bin/coot'
 		#--- PyMOL
 		alias pymol='/Applications/PyMOL.app/Contents/MacOS/PyMOL'
 	;;
