@@ -43,6 +43,7 @@ export PATH="${HOME}/.cargo/bin:${PATH}"  # rustup
 export PATH="${HOME}/perl5/bin${PATH+:}${PATH}"  # Perl
 export PATH="${PATH}:$(dirname '/Applications/APBS.app/Contents/MacOS/apbs_term')"
 export PATH="${PATH}:/opt/xds/bin"  # XDS
+export PATH="${PATH}:${HOME}/.arkade/bin"  # arkade (k3s)
 
 #------ COMPILING ----- -----------------------#
 export ARCHFLAGS='-arch x86_64'
