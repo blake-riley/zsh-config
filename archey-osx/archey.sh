@@ -145,7 +145,7 @@ fi
 
 case "${packager}" in
   homebrew)
-    packagehandler=$(brew list -1 | wc -l | awk '{print $1 }')
+    packagehandler=$(brew list --formula -1 | wc -l | awk '{print $1 }')
     ;;
   macports)
     packagehandler=$(port installed | wc -l | awk '{print $1 }')
