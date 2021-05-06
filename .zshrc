@@ -43,6 +43,10 @@ source ${HOME}/.zsh/prompt.zsh
 #--- final commands --- ----------------#
 case `uname` in
 	Darwin)
-		${HOME}/.zsh/archey-osx/archey.sh --orange --packager --localip
+		if [[ -v TERM_PROGRAM ]] && [[ ${TERM_PROGRAM} == "vscode" ]]
+		then :
+		else 
+			${HOME}/.zsh/archey-osx/archey.sh --orange --packager --localip
+		fi
 	;;
 esac
