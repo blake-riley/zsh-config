@@ -15,6 +15,7 @@ fi
 
 #--- Python
 export PYENV_ROOT="${HOME}/.pyenv"
+export PIPENV_PYTHON="${PYENV_ROOT}/shims/python"
 
 #--- Ruby
 if [[ $(uname -s) == Darwin ]] && $(command -v brew 1>/dev/null 2>&1); then
