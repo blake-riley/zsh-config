@@ -32,6 +32,7 @@ function extract {
           *.zip)       unzip $1   ;;
           *.Z)         uncompress $1  ;;
           *.7z)        7z x $1  ;;
+          *.ab)        ( printf "\x1f\x8b\x08\x00\x00\x00\x00\x00" ; tail -c +25 $1 ) |  tar xvzf - ;;
           *)        echo "'$1' cannot be extracted via extract()" ;;
       esac
   else
