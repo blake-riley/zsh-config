@@ -47,3 +47,6 @@ export PATH="${PATH}:${HOME}/.arkade/bin"  # arkade (k3s)
 
 #------ COMPILING ----- -----------------------#
 export ARCHFLAGS='-arch x86_64'
+
+#------ EDITING ------- -----------------------#
+export EDITOR=vim
