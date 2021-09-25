@@ -16,9 +16,9 @@ if command -v rbenv 1>/dev/null 2>&1; then eval "$(rbenv init -)"; fi
 #--- Gromacs
 # source /usr/local/share/gromacs/GMXRC.bash
 #--- CCP4
-# source /Applications/ccp4-7.0/bin/ccp4.setup-sh
+# source /Applications/ccp4-7.1/bin/ccp4.setup-sh
 #--- Phenix
-# source /Applications/phenix-1.14-3260/phenix_env.sh
+# source /Applications/phenix-1.19-4092/phenix_env.sh
 
 #--- TeX fix --- ------ -----------------------#
 #eval `/usr/libexec/path_helper -s`
