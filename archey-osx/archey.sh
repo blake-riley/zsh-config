@@ -26,9 +26,6 @@ do
     -p|--packager)
       packager=$detectedpackager
       ;;
-    -m|--macports)
-      packager=macports
-      ;;
     -b|--nocolor)
       opt_nocolor=t
       ;;
@@ -53,7 +50,6 @@ do
       echo "Usage: $0 [options]"
       echo
       echo "  -p --packager  Use auto detected package system (default packager: ${detectedpackager})."
-      echo "  -m --macports  Force use MacPorts as package system."
       echo "  -b --nocolor   Turn color off."
       echo "  -c --color     Force the color on (overrides --nocolor)."
       echo "     --orange   Make the apple logo appear orange (overrides --nocolor)."
@@ -75,14 +71,14 @@ hostname=$(hostname | sed 's/.local//g')
 
 # v4 and v6 address detection
 if [[ "${opt_offline}" = f ]]; then
-    ipfile4="${HOME}/.archey-ipv4"
-    ipfile6="${HOME}/.archey-ipv6"
+    ipfile4="${XDG_CACHE_HOME:-${HOME}/.cache}/archey-ipv4"
+    ipfile6="${XDG_CACHE_HOME:-${HOME}/.cache}/archey-ipv6"
     if [ -a "$ipfile4" ] && test `find "$ipfile4" -mmin -360`; then
         while read -r line; do
             V4="$line"
         done < "$ipfile4"
     else
-        if V4=$(curl -sS --max-time 5 https://4.ifcfg.me/ 2>/dev/null); then
+        if V4=$(dig +short myip.opendns.com A @resolver1.opendns.com 2>/dev/null); then
             echo $V4 > "$ipfile4"
         fi
     fi
@@ -91,7 +87,7 @@ if [[ "${opt_offline}" = f ]]; then
             V6="$line"
         done < "$ipfile6"
     else
-        if V6=$(curl -sS --max-time 5 https://6.ifcfg.me/ 2>/dev/null); then
+        if V6=$(dig +short myip.opendns.com AAAA @resolver1.opendns.com 2>|/dev/null); then
             echo $V6 > "$ipfile6"
         fi
     fi
@@ -104,7 +100,7 @@ if [[ "${opt_localip}" = t ]]; then
 	localip=$(ifconfig ${activeadapter} | awk '/inet / {print $2}')
 fi
 
-distro="macOS $(sw_vers -productVersion)"
+distro="$(sw_vers -productName) $(sw_vers -productVersion)"
 kernel=$(uname)
 uptime=$(uptime 2> /dev/null | sed -e 's/.*up[[:space:]]*//' -e 's/,[[:space:]]*[0-9]* user.*//')
 shell="$SHELL"
@@ -116,7 +112,7 @@ battery=$(ioreg -c AppleSmartBattery -r | awk '$1~/Capacity/{c[$1]=$3} END{OFMT=
 cpu=$(echo "$cpu" | awk '$1=$1' | sed 's/([A-Z]\{1,2\})//g')
 
 ram="$(( $(sysctl -n hw.memsize) / 1024 ** 3  )) GB"
-disk=$(df | head -2 | tail -1 | awk '{print $5}')
+disk="$(df -h | grep '/Volumes/Data$' | awk '{print $5 ", " $4 " avail"}')"
 
 
 # Set up colors if:
@@ -157,8 +153,7 @@ esac
 
 fieldlist[${#fieldlist[@]}]="${textColor}User:    ${normal} ${user}${normal}"
 fieldlist[${#fieldlist[@]}]="${textColor}Hostname:${normal} ${hostname}${normal}"
-fieldlist[${#fieldlist[@]}]="${textColor}Distro:  ${normal} ${distro}${normal}"
-fieldlist[${#fieldlist[@]}]="${textColor}Kernel:  ${normal} ${kernel}${normal}"
+fieldlist[${#fieldlist[@]}]="${textColor}Distro:  ${normal} ${distro} | ${kernel}${normal}"
 fieldlist[${#fieldlist[@]}]="${textColor}Uptime:  ${normal} ${uptime}${normal}"
 fieldlist[${#fieldlist[@]}]="${textColor}Shell:   ${normal} ${shell}${normal}"
 fieldlist[${#fieldlist[@]}]="${textColor}Terminal:${normal} ${terminal}${normal}"
