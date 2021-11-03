@@ -71,14 +71,14 @@ hostname=$(hostname | sed 's/.local//g')
 
 # v4 and v6 address detection
 if [[ "${opt_offline}" = f ]]; then
-    ipfile4="${HOME}/.archey-ipv4"
-    ipfile6="${HOME}/.archey-ipv6"
+    ipfile4="${XDG_CACHE_HOME:-${HOME}/.cache}/archey-ipv4"
+    ipfile6="${XDG_CACHE_HOME:-${HOME}/.cache}/archey-ipv6"
     if [ -a "$ipfile4" ] && test `find "$ipfile4" -mmin -360`; then
         while read -r line; do
             V4="$line"
         done < "$ipfile4"
     else
-        if V4=$(curl -sS --max-time 5 https://4.ifcfg.me/ 2>/dev/null); then
+        if V4=$(dig +short myip.opendns.com A @resolver1.opendns.com 2>/dev/null); then
             echo $V4 > "$ipfile4"
         fi
     fi
@@ -87,7 +87,7 @@ if [[ "${opt_offline}" = f ]]; then
             V6="$line"
         done < "$ipfile6"
     else
-        if V6=$(curl -sS --max-time 5 https://6.ifcfg.me/ 2>/dev/null); then
+        if V6=$(dig +short myip.opendns.com AAAA @resolver1.opendns.com 2>|/dev/null); then
             echo $V6 > "$ipfile6"
         fi
     fi
