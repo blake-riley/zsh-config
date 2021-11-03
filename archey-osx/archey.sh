@@ -112,7 +112,7 @@ battery=$(ioreg -c AppleSmartBattery -r | awk '$1~/Capacity/{c[$1]=$3} END{OFMT=
 cpu=$(echo "$cpu" | awk '$1=$1' | sed 's/([A-Z]\{1,2\})//g')
 
 ram="$(( $(sysctl -n hw.memsize) / 1024 ** 3  )) GB"
-disk=$(df | head -2 | tail -1 | awk '{print $5}')
+disk="$(df -h | grep '/Volumes/Data$' | awk '{print $5 ", " $4 " avail"}')"
 
 
 # Set up colors if:
