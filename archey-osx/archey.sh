@@ -26,9 +26,6 @@ do
     -p|--packager)
       packager=$detectedpackager
       ;;
-    -m|--macports)
-      packager=macports
-      ;;
     -b|--nocolor)
       opt_nocolor=t
       ;;
@@ -53,7 +50,6 @@ do
       echo "Usage: $0 [options]"
       echo
       echo "  -p --packager  Use auto detected package system (default packager: ${detectedpackager})."
-      echo "  -m --macports  Force use MacPorts as package system."
       echo "  -b --nocolor   Turn color off."
       echo "  -c --color     Force the color on (overrides --nocolor)."
       echo "     --orange   Make the apple logo appear orange (overrides --nocolor)."
