@@ -100,7 +100,7 @@ if [[ "${opt_localip}" = t ]]; then
 	localip=$(ifconfig ${activeadapter} | awk '/inet / {print $2}')
 fi
 
-distro="macOS $(sw_vers -productVersion)"
+distro="$(sw_vers -productName) $(sw_vers -productVersion)"
 kernel=$(uname)
 uptime=$(uptime 2> /dev/null | sed -e 's/.*up[[:space:]]*//' -e 's/,[[:space:]]*[0-9]* user.*//')
 shell="$SHELL"
@@ -153,8 +153,7 @@ esac
 
 fieldlist[${#fieldlist[@]}]="${textColor}User:    ${normal} ${user}${normal}"
 fieldlist[${#fieldlist[@]}]="${textColor}Hostname:${normal} ${hostname}${normal}"
-fieldlist[${#fieldlist[@]}]="${textColor}Distro:  ${normal} ${distro}${normal}"
-fieldlist[${#fieldlist[@]}]="${textColor}Kernel:  ${normal} ${kernel}${normal}"
+fieldlist[${#fieldlist[@]}]="${textColor}Distro:  ${normal} ${distro} | ${kernel}${normal}"
 fieldlist[${#fieldlist[@]}]="${textColor}Uptime:  ${normal} ${uptime}${normal}"
 fieldlist[${#fieldlist[@]}]="${textColor}Shell:   ${normal} ${shell}${normal}"
 fieldlist[${#fieldlist[@]}]="${textColor}Terminal:${normal} ${terminal}${normal}"
