@@ -24,3 +24,5 @@ _If you are powerless to secure these files (usually to 755), then add '-u' to c
 ## TODO:
 
 - Fix <Tab> autocomplete eating lines above
+- Replace archey with the latest [archey](https://github.com/HorlogeSkynet/archey4)
+  - [[ command -v archey &> /dev/null ]] && archey
