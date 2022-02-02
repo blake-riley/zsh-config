@@ -78,7 +78,7 @@ if [[ "${opt_offline}" = f ]]; then
             V4="$line"
         done < "$ipfile4"
     else
-        if V4=$(dig +short myip.opendns.com A @resolver1.opendns.com 2>/dev/null); then
+        if V4=$(dig +time=5 +tries=1 +short myip.opendns.com A @resolver1.opendns.com 2>/dev/null); then
             echo $V4 > "$ipfile4"
         fi
     fi
@@ -87,7 +87,7 @@ if [[ "${opt_offline}" = f ]]; then
             V6="$line"
         done < "$ipfile6"
     else
-        if V6=$(dig +short myip.opendns.com AAAA @resolver1.opendns.com 2>|/dev/null); then
+        if V6=$(dig +time=5 +tries=1 +short myip.opendns.com AAAA @resolver1.opendns.com 2>|/dev/null); then
             echo $V6 > "$ipfile6"
         fi
     fi
