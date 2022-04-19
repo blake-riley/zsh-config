@@ -34,7 +34,15 @@ fi
 #-------- PATH -------- -----------------------#
 export PATH="${HOME}/.iterm2/bin:${PATH}"  # iterm2_shell_integrations
 export PATH="${AMBERHOME}/bin:${PATH}"  # Amber
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local:${PATH}"
+
+CPU=$(uname -p)
+if [[ "$CPU" == "arm" ]]; then
+	export PATH="/opt/homebrew/bin:$PATH"
+	alias oldbrew=/usr/local/bin/brew
+else
+	export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+fi
+
 export PATH="${HOME}/bin:${PATH}"
 export PATH="${HOME}/.local/bin:${PATH}"
 export PATH="${PYENV_ROOT}/bin:${PATH}"  # pyenv
@@ -46,7 +54,7 @@ export PATH="${PATH}:/opt/xds/bin"  # XDS
 export PATH="${PATH}:${HOME}/.arkade/bin"  # arkade (k3s)
 
 #------ COMPILING ----- -----------------------#
-export ARCHFLAGS='-arch x86_64'
+# export ARCHFLAGS='-arch x86_64'
 
 #------ EDITING ------- -----------------------#
 export EDITOR=vim
