@@ -17,6 +17,11 @@ function zsh_recompile {
   source ~/.zshrc
 }
 
+function gitignoreio() {
+  # From https://docs.gitignore.io/install/command-line
+  curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$@ ;
+}
+
 function extract {
   echo Extracting $1 ...
   if [ -f $1 ] ; then
