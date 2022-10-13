@@ -11,6 +11,10 @@ export ANDROID_HOME="/usr/local/opt/android-sdk"
 #--- Amber
 export AMBERHOME="/sw/amber18"
 export AMBER_PREFIX="/sw/amber18"
+#--- Rosetta
+if $(command -v brew 1>/dev/null 2>&1) && $(brew ls --versions rosetta 1>/dev/null); then
+	export ROSETTA3_DB="$(brew --prefix rosetta)/database"
+fi
 
 #--- Python
 export PYENV_ROOT="${HOME}/.pyenv"
