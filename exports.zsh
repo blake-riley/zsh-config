@@ -11,10 +11,6 @@ export ANDROID_HOME="/usr/local/opt/android-sdk"
 #--- Amber
 export AMBERHOME="/sw/amber18"
 export AMBER_PREFIX="/sw/amber18"
-#--- VMD
-if [[ $(uname -s) == Darwin ]]; then
-	export VMDDIR="/Applications/VMD-1.9.4.app/Contents/vmd"
-fi
 
 #--- Python
 export PYENV_ROOT="${HOME}/.pyenv"
