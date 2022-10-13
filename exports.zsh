@@ -5,7 +5,11 @@ export GPG_TTY="$(tty)"
 
 #--- brew
 # export HOMEBREW_BUILD_FROM_SOURCE=1
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+hostname=$(hostname | sed 's/.local//g')
+case $hostname in
+	*Tangor*)	unset HOMEBREW_CASK_OPTS ;;
+	*)		export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications" ;;
+esac
 #--- Android
 export ANDROID_HOME="/usr/local/opt/android-sdk"
 #--- Amber
