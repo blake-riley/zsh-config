@@ -2,6 +2,16 @@
 
 #- scripts to source -- -----------------------#
 
+#--- fzf Fuzzy finder --------------#
+fzf_prefix="$(brew --prefix fzf)"
+if [[ ! "$PATH" == *${fzf_prefix}/bin* ]]; then
+	if [ -d "${fzf_prefix}" ]; then
+		# export PATH="${PATH:+${PATH}:}${fzf_prefix}/bin"
+		[[ $- == *i* ]] && source "${fzf_prefix}/shell/completion.zsh" 2> /dev/null
+		source "${fzf_prefix}/shell/key-bindings.zsh"
+	fi
+fi
+
 #-- conda --------------------------#
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
