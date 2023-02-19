@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 #--- Homebrew zsh completion
-fpath=($HOME/.zsh-completions /usr/local/share/zsh-completions $fpath)
+fpath=($HOME/.zsh/zsh-completions /usr/local/share/zsh-completions $fpath)
 
 #----- zsh modules ---- -----------------------#
 autoload -U compinit && compinit
