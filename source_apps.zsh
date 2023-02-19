@@ -17,8 +17,12 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
 # Don't activate the base environment of conda (let pyenv reign)
-# conda config --set auto_activate_base false
+# If .condarc already exists, assume the user has set their prefs correctly.
+if [ ! -f "${HOME}/.condarc" ]; then
+	conda config --set auto_activate_base false
+fi
 
 #-- pyenv-virtualenv --------------------------#
 if command -v pyenv 1>/dev/null 2>&1; then
