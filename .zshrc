@@ -29,7 +29,7 @@ source ${HOME}/.zsh/colors.zsh
 source ${HOME}/.zsh/setopt.zsh
 source ${HOME}/.zsh/exports.zsh
 source ${HOME}/.zsh/editing.zsh
-source ${HOME}/.zsh/completion.zsh
+source ${HOME}/.zsh/zsh-completion.zsh
 source ${HOME}/.zsh/aliases.zsh
 [[ -f ${HOME}/.zsh/servers.zsh ]] && source ${HOME}/.zsh/servers.zsh
 source ${HOME}/.zsh/bindkeys.zsh
