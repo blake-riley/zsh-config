@@ -3,6 +3,7 @@
 #------ SECURITY ------ -----------------------#
 #--- ejson secrets
 export EJSON_KEYDIR="${HOME}/.local/share/ejson"
+export ZSH_SECRETS_FILE="${HOME}/.zsh/.secrets.ejson"
 
 #------ APPS ---------- -----------------------#
 ##--- fzf Fuzzy finder
