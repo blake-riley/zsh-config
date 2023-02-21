@@ -113,3 +113,30 @@ if exists percol; then
     zle -N percol_select_history
     bindkey '^R' percol_select_history
 fi
+
+# For managing jq and ejson for storing secrets
+function add_secret() {
+    print_usage() {
+        echo "Usage: add_secret <secret_file> <key> <value>";
+    }
+    if ! (( $# == 3 )); then
+        print_usage;
+        return 1;
+    fi
+    if ! [ -w $1 ]; then
+        print_usage;
+        echo "secret_file $1 does not exist, or is not writeable"
+        return 1;
+    fi
+    if ( ! exists sponge ); then echo "Please install the 'sponge' executable."; return 1; fi
+    if ( ! exists jq ); then echo "Please install the 'jq' command-line JSON processor."; return 1; fi
+
+    # Attempt first --- will print the stderr if jq fails, then bail
+    cat $1 | jq '. += {"'"${2:q}"'": "'"${3:q}"'"}' > /dev/null
+    errval=$?
+    if [ $errval -ne 0 ]; then return $errval; fi
+
+    # Commit to it.
+    cat $1 | jq '. += {"'"${2:q}"'": "'"${3:q}"'"}' | sponge $1
+    echo "Wrote secret to $1. Remember to encrypt before commit!"
+}

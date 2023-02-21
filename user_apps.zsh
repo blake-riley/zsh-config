@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
 
+#------ SECURITY ------ -----------------------#
+#--- ejson secrets
+export EJSON_KEYDIR="${HOME}/.local/share/ejson"
+
 #------ APPS ---------- -----------------------#
 ##--- fzf Fuzzy finder
 fzf_prefix="$(brew --prefix fzf)"
