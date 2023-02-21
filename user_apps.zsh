@@ -1,5 +1,14 @@
 #!/usr/bin/env zsh
 
+#------ SECURITY ------ -----------------------#
+#--- ejson secrets
+export EJSON_KEYDIR="${HOME}/.local/share/ejson"
+export ZSH_SECRETS_FILE="${HOME}/.zsh/.secrets.ejson"
+
+#--- Secrets for ENV export
+export HOMEBREW_GITHUB_API_TOKEN="$(get_secret ${ZSH_SECRETS_FILE} HOMEBREW_GITHUB_API_TOKEN)"
+
+
 #------ APPS ---------- -----------------------#
 ##--- fzf Fuzzy finder
 fzf_prefix="$(brew --prefix fzf)"
