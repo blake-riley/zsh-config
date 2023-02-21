@@ -140,3 +140,22 @@ function add_secret() {
     cat $1 | jq '. += {"'"${2:q}"'": "'"${3:q}"'"}' | sponge $1
     echo "Wrote secret to $1. Remember to encrypt before commit!"
 }
+
+function get_secret() {
+    print_usage() {
+        echo "Usage: get_secret <secret_file> <key>";
+    }
+    if ! (( $# == 2 )); then
+        print_usage;
+        return 1;
+    fi
+    if ! [ -r $1 ]; then
+        print_usage;
+        echo "secret_file $1 does not exist, or is not readable"
+        return 1;
+    fi
+    if ( ! exists jq ); then echo "Please install the 'jq' command-line JSON processor."; return 1; fi
+    if ( ! exists ejson ); then echo "Please install the 'ejson' executable for secret-management."; return 1; fi
+
+    ejson decrypt $1 | jq '.'"${2}"    
+}
