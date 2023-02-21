@@ -98,7 +98,8 @@ magic-enter () {
 zle -N magic-enter
 bindkey "^M" magic-enter
 
-function exists { which $1 &> /dev/null }
+function exist { command -v $1 1>/dev/null 2>&1 }  # POSIX standard
+function exists { which $1 &> /dev/null }  # works for zsh, csh
 
 if exists percol; then
     function percol_select_history() {
