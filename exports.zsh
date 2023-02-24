@@ -80,7 +80,7 @@ unset __conda_setup
 
 # Don't activate the base environment of conda (let pyenv reign)
 # If .condarc already exists, assume the user has set their prefs correctly.
-if [ ! -f "${HOME}/.condarc" ]; then
+if [ command -v conda 1>/dev/null 2>&1 ] && [ ! -f "${HOME}/.condarc" ]; then
 	conda config --set auto_activate_base false
 fi
 
