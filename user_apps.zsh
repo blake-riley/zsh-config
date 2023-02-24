@@ -11,14 +11,19 @@ export HOMEBREW_GITHUB_API_TOKEN="$(get_secret ${ZSH_SECRETS_FILE} HOMEBREW_GITH
 
 #------ APPS ---------- -----------------------#
 ##--- fzf Fuzzy finder
-fzf_prefix="$(brew --prefix fzf)"
-if [[ ! "$PATH" == *${fzf_prefix}/bin* ]]; then
-	if [ -d "${fzf_prefix}" ]; then
-		# export PATH="${PATH:+${PATH}:}${fzf_prefix}/bin"
-		[[ $- == *i* ]] && source "${fzf_prefix}/shell/completion.zsh" 2> /dev/null
-		source "${fzf_prefix}/shell/key-bindings.zsh"
+() {
+	if exist fzf; then
+		local fzf_executable="$(readlink -f $(which fzf))"
+		local fzf_prefix="${fzf_executable%/bin/fzf}"
+		if [[ ! "$PATH" == *${fzf_prefix}/bin* ]]; then
+			if [ -d "${fzf_prefix}" ]; then
+				# export PATH="${PATH:+${PATH}:}${fzf_prefix}/bin"
+				[[ $- == *i* ]] && source "${fzf_prefix}/shell/completion.zsh" 2> /dev/null
+				source "${fzf_prefix}/shell/key-bindings.zsh"
+			fi
+		fi
 	fi
-fi
+}
 
 ##--- APBS
 export PATH="${PATH}:$(dirname '/Applications/APBS.app/Contents/MacOS/apbs_term')"
