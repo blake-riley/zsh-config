@@ -28,8 +28,7 @@ export HOMEBREW_GITHUB_API_TOKEN="$(get_secret ${ZSH_SECRETS_FILE} HOMEBREW_GITH
 ##--- APBS
 export PATH="${PATH}:$(dirname '/Applications/APBS.app/Contents/MacOS/apbs_term')"
 ##--- Amber
-export AMBERHOME="/sw/amber18"
-export AMBER_PREFIX="/sw/amber18"
+export AMBERHOME="${HOME}/opt/ambertools22/amber22"
 export PATH="${AMBERHOME}/bin:${PATH}"
 ##--- Gromacs
 # source /usr/local/share/gromacs/GMXRC.bash
