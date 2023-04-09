@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 #--- Homebrew zsh completion
-fpath=($HOME/.zsh/zsh-completions /usr/local/share/zsh-completions $fpath)
+fpath=($HOME/.zsh/zsh-completions $(brew --prefix)/share/zsh-completions $fpath)
 
 #----- zsh modules ---- -----------------------#
 autoload -U compinit && compinit
@@ -34,4 +34,3 @@ expand-or-complete-with-dots() {  # Fix for slow prompts
 }
 zle -N expand-or-complete-with-dots
 bindkey "^I" expand-or-complete-with-dots
-
