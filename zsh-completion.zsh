@@ -3,6 +3,9 @@
 #--- Homebrew zsh completion
 fpath=($HOME/.zsh/zsh-completions $(brew --prefix)/share/zsh-completions $fpath)
 
+#----- fzf completion - -----------------------#
+[ -f "$(brew --prefix)/opt/fzf/shell/completion.zsh" ] && source "$(brew --prefix)/opt/fzf/shell/completion.zsh"
+
 #----- zsh modules ---- -----------------------#
 autoload -U compinit && compinit
 
