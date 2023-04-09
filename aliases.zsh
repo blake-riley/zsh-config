@@ -20,6 +20,9 @@ alias lm='ls -al | more' # pipe through 'more'
 alias lr='ls -lR'        # recursive ls
 alias tree='tree -Csu'   # nice alternative to 'recursive ls'
 
+#---- home dotfiles repo ----------------------#
+alias config='git --git-dir $HOME/.dotfiles.git/ --work-tree=$HOME'
+
 #---- pip upgrade ----- -----------------------#
 alias pipup="pip freeze --local | grep -v '^\-e' | cut -d = -f 1 | xargs pip install -U"
 
