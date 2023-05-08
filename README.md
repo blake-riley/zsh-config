@@ -6,6 +6,7 @@
   - `git clone https://github.com/blake-riley/zsh-config ~/.zsh`
   - `cd ~/.zsh && git submodule init && git submodule update`
 - Link `.zshrc` into your `$HOME`, with `ln -s ~/.zsh/.zshrc ~/.zshrc`
+- Link `.zshenv` into your `$HOME`, with `ln -s ~/.zsh/.zshenv ~/.zshenv`
 - Change shell (permanently), with `sudo chsh -s /usr/local/bin/zsh`
 - Install NerdFonts for terminal (`brew tap homebrew/cask-fonts; brew cask install font-hack-nerd-font`), and configure your Terminal emulator to use these fonts
 
