@@ -7,6 +7,7 @@ export ZSH_SECRETS_FILE="${HOME}/.zsh/.secrets.ejson"
 
 #--- Secrets for ENV export
 export HOMEBREW_GITHUB_API_TOKEN="$(get_secret ${ZSH_SECRETS_FILE} HOMEBREW_GITHUB_API_TOKEN)"
+export PAPERPILE_LIBRARY_ADDRESS="$(get_secret ${ZSH_SECRETS_FILE} PAPERPILE_LIBRARY_ADDRESS)"
 
 
 #------ APPS ---------- -----------------------#
