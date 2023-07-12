@@ -157,5 +157,5 @@ function get_secret() {
     if ( ! exists jq ); then echo "Please install the 'jq' command-line JSON processor."; return 1; fi
     if ( ! exists ejson ); then echo "Please install the 'ejson' executable for secret-management."; return 1; fi
 
-    ejson decrypt $1 | jq '.'"${2}"    
+    ejson decrypt $1 | jq -r '.'"${2}"    
 }
