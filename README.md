@@ -22,6 +22,22 @@ _If you are powerless to secure these files (usually to 755), then add '-u' to c
 - zsh (`brew install zsh`)
 - A nice terminal emulator
 
-## TODO:
+
+# Secret Management
+
+## Additional dependencies
+
+- jq (`brew install jq`) json parser
+- ejson (`brew install shopify/shopify/ejson`) json encrypter for secrets
+
+## Adding secrets to .secrets.ejson
+
+- 1. Make sure you have the secret in ${EJSON_KEYDIR}
+- 2. `add_secret ${ZSH_SECRETS_FILE} <VARNAME> <SECRET>`
+- 3. `ejson encrypt ${ZSH_SECRETS_FILE}`
+- 4. Add, commit & push the changes to ZSH_SECRETS_FILE to the repo.
+
+
+# TODO:
 
 - Fix <Tab> autocomplete eating lines above
