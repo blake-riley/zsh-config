@@ -139,6 +139,7 @@ function add_secret() {
     # Commit to it.
     cat $1 | jq '. += {"'"${2:q}"'": "'"${3:q}"'"}' | sponge $1
     echo "Wrote secret to $1. Remember to encrypt before commit!"
+    echo "> ejson encrypt $1"
 }
 
 function get_secret() {
