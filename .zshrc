@@ -20,16 +20,18 @@ fi
 
 #----- zsh modules ---- -----------------------#
 autoload -U promptinit && promptinit
-autoload -U compinit && compinit
+# autoload -U compinit && compinit
 autoload -U zsh-mime-setup && zsh-mime-setup
 autoload -U zcalc
 
+source ${HOME}/.zsh/plugins/evalcache/evalcache.plugin.zsh
+
+source ${HOME}/.zsh/zsh-completion.zsh  # NB: this does compinit
 source ${HOME}/.zsh/iterm2_shell_integration.zsh
 source ${HOME}/.zsh/colors.zsh
 source ${HOME}/.zsh/setopt.zsh
 source ${HOME}/.zsh/exports.zsh
 source ${HOME}/.zsh/editing.zsh
-source ${HOME}/.zsh/zsh-completion.zsh
 source ${HOME}/.zsh/aliases.zsh
 [[ -f ${HOME}/.zsh/servers.zsh ]] && source ${HOME}/.zsh/servers.zsh
 source ${HOME}/.zsh/bindkeys.zsh
