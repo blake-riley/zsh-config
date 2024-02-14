@@ -6,9 +6,6 @@ fpath=($HOME/.zsh/zsh-completions $(brew --prefix)/share/zsh-completions $fpath)
 #----- fzf completion - -----------------------#
 [ -f "$(brew --prefix)/opt/fzf/shell/completion.zsh" ] && source "$(brew --prefix)/opt/fzf/shell/completion.zsh"
 
-#----- zsh modules ---- -----------------------#
-autoload -U compinit && compinit
-
 #----- completion ----- -----------------------#
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' 'r:|[._-]=* r:|=*'
@@ -37,3 +34,6 @@ expand-or-complete-with-dots() {  # Fix for slow prompts
 }
 zle -N expand-or-complete-with-dots
 bindkey "^I" expand-or-complete-with-dots
+
+#----- zsh modules ---- -----------------------#
+autoload -U compinit && compinit
