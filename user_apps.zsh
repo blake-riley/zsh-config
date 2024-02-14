@@ -35,9 +35,7 @@ export PATH="${AMBERHOME}/bin:${PATH}"
 ##--- Gromacs
 # source /usr/local/share/gromacs/GMXRC.bash
 ##--- Rosetta
-if $(command -v brew 1>/dev/null 2>&1) && $(brew ls --versions rosetta 1>/dev/null); then
-	export ROSETTA3_DB="$(brew --prefix rosetta)/database"
-fi
+export ROSETTA3_DB="$(brew --prefix)/opt/rosetta/database"
 ##--- CCP4
 # source /Applications/ccp4-7.1/bin/ccp4.setup-sh
 ##--- Phenix
