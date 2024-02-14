@@ -37,7 +37,7 @@ export ANDROID_HOME="/usr/local/opt/android-sdk"
 if [[ $(uname -s) == Darwin ]] && $(command -v brew 1>/dev/null 2>&1); then
 	export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 fi
-if command -v rbenv 1>/dev/null 2>&1; then eval "$(rbenv init -)"; fi
+if command -v rbenv 1>/dev/null 2>&1; then _evalcache rbenv init -; fi
 
 ##--- Rust ---
 export PATH="${HOME}/.cargo/bin:${PATH}"
@@ -56,44 +56,19 @@ export PATH="${HOME}/.cargo/bin:${PATH}"
 ###-- pyenv
 export PYENV_ROOT="${HOME}/.pyenv"
 export PATH="${PYENV_ROOT}/bin:${PATH}"
-if command -v pyenv 1>/dev/null 2>&1; then
-	eval "$(pyenv init --path)";
-	eval "$(pyenv init -)";
-fi
-if command -v pyenv-virtualenv-init 1>/dev/null 2>&1; then eval "$(pyenv virtualenv-init -)"; fi
+if command -v pyenv 1>/dev/null 2>&1; then _evalcache pyenv init -; fi  # This one is _still_ slow
+if command -v pyenv-virtualenv-init 1>/dev/null 2>&1; then _evalcache pyenv-virtualenv-init -; fi
 
 ###-- conda
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+export CONDA_EXE="$(brew --caskroom)/miniconda/base/bin/conda";
+if [ -x "${CONDA_EXE}" ]; then _evalcache "${CONDA_EXE}" shell.zsh hook; fi
 
+###-- mamba
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!
-export MAMBA_EXE="/opt/homebrew/opt/micromamba/bin/micromamba";
+export MAMBA_EXE="$(brew --prefix)/opt/micromamba/bin/micromamba";
 export MAMBA_ROOT_PREFIX="${HOME}/.micromamba";
-__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__mamba_setup"
-else
-    if [ -f "${HOME}/.micromamba/etc/profile.d/micromamba.sh" ]; then
-        . "${HOME}/.micromamba/etc/profile.d/micromamba.sh"
-    else
-        export  PATH="${HOME}/.micromamba/bin:$PATH"  # extra space after export prevents interference from conda init
-    fi
-fi
-unset __mamba_setup
-# <<< mamba initialize <<<
+if [ -x "${MAMBA_EXE}" ]; then _evalcache "${MAMBA_EXE}" shell hook --shell zsh --prefix "$MAMBA_ROOT_PREFIX"; fi
 
 # Don't activate the base environment of conda (let pyenv reign)
 # If .condarc already exists, assume the user has set their prefs correctly.
