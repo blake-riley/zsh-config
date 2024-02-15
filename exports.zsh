@@ -57,7 +57,7 @@ export PATH="${HOME}/.cargo/bin:${PATH}"
 export PYENV_ROOT="${HOME}/.pyenv"
 export PATH="${PYENV_ROOT}/bin:${PATH}"
 if command -v pyenv 1>/dev/null 2>&1; then _evalcache pyenv init -; fi  # This one is _still_ slow
-if command -v pyenv-virtualenv-init 1>/dev/null 2>&1; then _evalcache pyenv-virtualenv-init -; fi
+# if command -v pyenv-virtualenv-init 1>/dev/null 2>&1; then _evalcache pyenv-virtualenv-init -; fi
 
 ###-- conda
 export CONDA_EXE="$(brew --caskroom)/miniconda/base/bin/conda";
