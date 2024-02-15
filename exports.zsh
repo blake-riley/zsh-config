@@ -35,7 +35,7 @@ export ANDROID_HOME="/usr/local/opt/android-sdk"
 
 ##--- Ruby ---
 if [[ $(uname -s) == Darwin ]] && $(command -v brew 1>/dev/null 2>&1); then
-	export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+	export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix)/opt/openssl@1.1"  # TODO: Why do I need this export?
 fi
 if command -v rbenv 1>/dev/null 2>&1; then _evalcache rbenv init -; fi
 
