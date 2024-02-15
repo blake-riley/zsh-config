@@ -7,9 +7,9 @@ arraytest[0]='test' || (echo 'Error: Arrays are not supported in this version of
 bash.' && exit 2)
 
 # Detect the packager.
-if [ -x /usr/local/bin/brew ]; then
+if command -v brew 1>/dev/null 2>&1; then
   detectedpackager=homebrew
-elif command -v port >/dev/null; then
+elif command -v port 1>/dev/null 2>&1; then
   detectedpackager=macports
 else
   detectedpackager=none
@@ -139,17 +139,28 @@ then
   normal=$(tput    sgr0 2>/dev/null)
 fi
 
-case "${packager}" in
-  homebrew)
-    packagehandler=$(brew list --formula -1 | wc -l | awk '{print $1 }')
-    ;;
-  macports)
-    packagehandler=$(port installed | wc -l | awk '{print $1 }')
-    ;;
-  *)
-    packagehandler=0
-    ;;
-esac
+npackagesfile="${XDG_CACHE_HOME:-${HOME}/.cache}/archey-npackages"
+if [ -a "$npackagesfile" ] && test `find "$npackagesfile" -mmin -360`; then
+    while read -r line; do
+        packagehandler="$line"
+    done < "$npackagesfile"
+else
+  case "${packager}" in
+    homebrew)
+      if packagehandler=$(brew list --formula -1 | wc -l | awk '{print $1 }' 2>/dev/null); then
+          echo $packagehandler > "$npackagesfile"
+      fi
+      ;;
+    macports)
+      if packagehandler=$(port installed | wc -l | awk '{print $1 }' 2>/dev/null); then
+          echo $packagehandler > "$npackagesfile"
+      fi
+      ;;
+    *)
+      packagehandler=0
+      ;;
+  esac
+fi
 
 fieldlist[${#fieldlist[@]}]="${textColor}User:    ${normal} ${user}${normal}"
 fieldlist[${#fieldlist[@]}]="${textColor}Hostname:${normal} ${hostname}${normal}"
