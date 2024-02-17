@@ -38,7 +38,7 @@ source ${HOME}/.zsh/aliases.zsh
 source ${HOME}/.zsh/bindkeys.zsh
 source ${HOME}/.zsh/history.zsh
 source ${HOME}/.zsh/zsh_hooks.zsh
-[[ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+exist brew && [[ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ${HOME}/.zsh/user_apps.zsh
 source ${HOME}/.zsh/prompt.zsh
 

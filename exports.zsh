@@ -60,15 +60,18 @@ if command -v pyenv 1>/dev/null 2>&1; then _evalcache pyenv init -; fi  # This o
 # if command -v pyenv-virtualenv-init 1>/dev/null 2>&1; then _evalcache pyenv-virtualenv-init -; fi
 
 ###-- conda
-export CONDA_EXE="$(brew --caskroom)/miniconda/base/bin/conda";
-if [ -x "${CONDA_EXE}" ]; then _evalcache "${CONDA_EXE}" shell.zsh hook; fi
+if exist brew; then
+	export CONDA_EXE="$(brew --caskroom)/miniconda/base/bin/conda";
+	if [ -x "${CONDA_EXE}" ]; then _evalcache "${CONDA_EXE}" shell.zsh hook; fi;
+fi
 
 ###-- mamba
 # >>> mamba initialize >>>
-# !! Contents within this block are managed by 'mamba init' !!
-export MAMBA_EXE="$(brew --prefix)/opt/micromamba/bin/micromamba";
-export MAMBA_ROOT_PREFIX="${HOME}/.micromamba";
-if [ -x "${MAMBA_EXE}" ]; then _evalcache "${MAMBA_EXE}" shell hook --shell zsh --prefix "$MAMBA_ROOT_PREFIX"; fi
+if exist brew; then
+	export MAMBA_EXE="$(brew --prefix)/opt/micromamba/bin/micromamba";
+	export MAMBA_ROOT_PREFIX="${HOME}/.micromamba";
+	if [ -x "${MAMBA_EXE}" ]; then _evalcache "${MAMBA_EXE}" shell hook --shell zsh --prefix "$MAMBA_ROOT_PREFIX"; fi;
+fi
 
 # Don't activate the base environment of conda (let pyenv reign)
 # If .condarc already exists, assume the user has set their prefs correctly.

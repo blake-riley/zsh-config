@@ -1,10 +1,13 @@
 #!/usr/bin/env zsh
 
 #--- Homebrew zsh completion
-fpath=($HOME/.zsh/zsh-completions $(brew --prefix)/share/zsh-completions $fpath)
+exist brew && fpath=($(brew --prefix)/share/zsh-completions $fpath)
+
+#--- Personal zsh completions
+fpath=($HOME/.zsh/zsh-completions $fpath)
 
 #----- fzf completion - -----------------------#
-[ -f "$(brew --prefix)/opt/fzf/shell/completion.zsh" ] && source "$(brew --prefix)/opt/fzf/shell/completion.zsh"
+exist brew && [ -f "$(brew --prefix)/opt/fzf/shell/completion.zsh" ] && source "$(brew --prefix)/opt/fzf/shell/completion.zsh"
 
 #----- completion ----- -----------------------#
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
