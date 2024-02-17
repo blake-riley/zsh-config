@@ -26,6 +26,7 @@ autoload -U zcalc
 
 source ${HOME}/.zsh/plugins/evalcache/evalcache.plugin.zsh
 
+source ${HOME}/.zsh/functions.zsh
 source ${HOME}/.zsh/zsh-completion.zsh  # NB: this does compinit
 source ${HOME}/.zsh/iterm2_shell_integration.zsh
 source ${HOME}/.zsh/colors.zsh
@@ -35,10 +36,9 @@ source ${HOME}/.zsh/editing.zsh
 source ${HOME}/.zsh/aliases.zsh
 [[ -f ${HOME}/.zsh/servers.zsh ]] && source ${HOME}/.zsh/servers.zsh
 source ${HOME}/.zsh/bindkeys.zsh
-source ${HOME}/.zsh/functions.zsh
 source ${HOME}/.zsh/history.zsh
 source ${HOME}/.zsh/zsh_hooks.zsh
-[[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+exist brew && [[ -f $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ${HOME}/.zsh/user_apps.zsh
 source ${HOME}/.zsh/prompt.zsh
 
