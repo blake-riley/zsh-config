@@ -37,7 +37,7 @@ export ANDROID_HOME="/usr/local/opt/android-sdk"
 # ruby<2.4 is not compatible with openssl@1.1 (https://github.com/rbenv/ruby-build/issues/1353#issuecomment-573414540)
 #   We're well past that now, so I'm leaving this here as a historical artefact.
 #   export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix)/opt/openssl@1.0"
-if command -v rbenv 1>/dev/null 2>&1; then _evalcache rbenv init -; fi
+if exist rbenv; then _evalcache rbenv init -; fi
 
 ##--- Rust ---
 export PATH="${HOME}/.cargo/bin:${PATH}"
@@ -56,8 +56,8 @@ export PATH="${HOME}/.cargo/bin:${PATH}"
 ###-- pyenv
 export PYENV_ROOT="${HOME}/.pyenv"
 export PATH="${PYENV_ROOT}/bin:${PATH}"
-if command -v pyenv 1>/dev/null 2>&1; then _evalcache pyenv init -; fi  # This one is _still_ slow
-# if command -v pyenv-virtualenv-init 1>/dev/null 2>&1; then _evalcache pyenv-virtualenv-init -; fi
+if exist pyenv; then _evalcache pyenv init -; fi  # This one is _still_ slow
+# if exist pyenv-virtualenv-init; then _evalcache pyenv-virtualenv-init -; fi
 
 ###-- conda
 if exist brew; then
@@ -75,7 +75,7 @@ fi
 
 # Don't activate the base environment of conda (let pyenv reign)
 # If .condarc already exists, assume the user has set their prefs correctly.
-if [ command -v conda 1>/dev/null 2>&1 ] && [ ! -f "${HOME}/.condarc" ]; then
+if exist conda && [ ! -f "${HOME}/.condarc" ]; then
 	conda config --set auto_activate_base false
 fi
 
