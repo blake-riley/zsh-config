@@ -15,7 +15,7 @@ export PATH="${HOME}/.iterm2/bin:${PATH}"  # iterm2_shell_integrations
 
 # Homebrew path
 CPU=$(uname -p)
-if [[ "$CPU" == "arm" ]]; then
+if exist brew && [[ "$CPU" == "arm" ]]; then
 	export PATH="/opt/homebrew/bin:$PATH"
 	alias oldbrew=/usr/local/bin/brew
 else
