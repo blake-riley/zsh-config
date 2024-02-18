@@ -15,7 +15,7 @@ export PATH="${HOME}/.iterm2/bin:${PATH}"  # iterm2_shell_integrations
 
 # Homebrew path
 CPU=$(uname -p)
-if [[ "$CPU" == "arm" ]]; then
+if exist brew && [[ "$CPU" == "arm" ]]; then
 	export PATH="/opt/homebrew/bin:$PATH"
 	alias oldbrew=/usr/local/bin/brew
 else
@@ -76,7 +76,10 @@ fi
 # Don't activate the base environment of conda (let pyenv reign)
 # If .condarc already exists, assume the user has set their prefs correctly.
 if exist conda && [ ! -f "${HOME}/.condarc" ]; then
-	conda config --set auto_activate_base false
+	# Only run this if conda is a function, otherwise conda hasn't been imported properly yet
+	if (( $+functions[conda] )); then
+		conda config --set auto_activate_base false;
+	fi
 fi
 
 ###-- pipenv
