@@ -38,6 +38,14 @@ export ANDROID_HOME="/usr/local/opt/android-sdk"
 #   We're well past that now, so I'm leaving this here as a historical artefact.
 #   export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix)/opt/openssl@1.0"
 if exist rbenv; then _evalcache rbenv init --no-rehash - zsh; fi
+() {  # cached rbenv rehash
+	rbenvrehashfile="${XDG_CACHE_HOME:-${HOME}/.cache}/last-rbenv-rehash"
+	if [ -e "$rbenvrehashfile" ] && test `find "$rbenvrehashfile" -mmin -360`; then 
+		:  # don't rehash if less than 6 hrs old
+	else
+		command rbenv rehash && touch $rbenvrehashfile;
+	fi
+}
 
 ##--- Rust ---
 export PATH="${HOME}/.cargo/bin:${PATH}"
@@ -57,6 +65,14 @@ export PATH="${HOME}/.cargo/bin:${PATH}"
 export PYENV_ROOT="${HOME}/.pyenv"
 export PATH="${PYENV_ROOT}/bin:${PATH}"
 if exist pyenv; then _evalcache pyenv init --path --no-rehash - zsh; fi  # ~15 ms, no-rehash saves ~125 ms (pyenv/pyenv#784)
+() {  # cached pyenv rehash
+	pyenvrehashfile="${XDG_CACHE_HOME:-${HOME}/.cache}/last-pyenv-rehash"
+	if [ -e "$pyenvrehashfile" ] && test `find "$pyenvrehashfile" -mmin -360`; then 
+		:  # don't rehash if less than 6 hrs old
+	else
+		command pyenv rehash && touch $pyenvrehashfile;
+	fi
+}
 # if exist pyenv-virtualenv-init; then _evalcache pyenv-virtualenv-init -; fi
 
 ###-- conda
