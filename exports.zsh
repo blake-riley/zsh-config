@@ -29,6 +29,11 @@ case $hostname in
 	*)		export HOMEBREW_CASK_OPTS="--appdir=${HOME}/Applications" ;;
 esac
 
+#------ DIRENV -----------------------#
+if exist direnv; then
+	_evalcache direnv hook zsh
+fi
+
 #------ LANGUAGES ----- -----------------------#
 ##--- Android ---
 export ANDROID_HOME="/usr/local/opt/android-sdk"
