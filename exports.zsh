@@ -90,7 +90,7 @@ fi
 if exist brew; then
 	export MAMBA_EXE="$(brew --prefix)/opt/micromamba/bin/micromamba";
 	export MAMBA_ROOT_PREFIX="${HOME}/.micromamba";
-	if [ -x "${MAMBA_EXE}" ]; then _evalcache "${MAMBA_EXE}" shell hook --shell zsh --prefix "$MAMBA_ROOT_PREFIX"; fi;
+	if [ -x "${MAMBA_EXE}" ]; then _evalcache "${MAMBA_EXE}" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX"; fi;
 fi
 
 # Don't activate the base environment of conda (let pyenv reign)
