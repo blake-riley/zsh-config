@@ -28,7 +28,9 @@ source ${HOME}/.zsh/plugins/evalcache/evalcache.plugin.zsh
 
 source ${HOME}/.zsh/functions.zsh
 source ${HOME}/.zsh/zsh-completion.zsh  # NB: this does compinit
-source ${HOME}/.zsh/iterm2_shell_integration.zsh
+if [[ ${TERM_PROGRAM} == "iTerm.app" ]]; then
+	source ${HOME}/.zsh/iterm2_shell_integration.zsh
+fi
 source ${HOME}/.zsh/colors.zsh
 source ${HOME}/.zsh/setopt.zsh
 source ${HOME}/.zsh/exports.zsh
