@@ -34,6 +34,11 @@ if exist direnv; then
 	_evalcache direnv hook zsh
 fi
 
+#------ FZF --------------------------#
+if exist fzf; then
+	_evalcache fzf --zsh
+fi
+
 #------ LANGUAGES ----- -----------------------#
 ##--- Android ---
 export ANDROID_HOME="/usr/local/opt/android-sdk"
